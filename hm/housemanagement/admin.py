@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Person, City, Address
+from .models import Person, City, Address, Street
 # Register your models here.
 
 
@@ -25,13 +25,24 @@ class CityAdmin(admin.ModelAdmin):
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ('city_name', 'street',
-                    'house_number',)
+    list_display = ('city_name', 'street_name', 'house_number',)
     ordering = ['house_number']
     list_per_page = 5
-    search_fields = ['house_number', 'floor', 'address',
-                     'building_number', 'entrance_number', 'owner']
+    search_fields = ['house_number', 'city__name', 'street__name']
 
     def city_name(self, obj):
         return obj.city.name
+
+    def street_name(self, obj):
+        return obj.street.name
+
     city_name.short_description = 'Город'
+    street_name.short_description = 'Улица'
+
+
+@admin.register(Street)
+class StreetAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    ordering = ['name']
+    list_per_page = 5
+    search_fields = ['name']
