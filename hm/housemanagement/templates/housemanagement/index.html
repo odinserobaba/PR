@@ -1,0 +1,10 @@
+<ul class="list-articles">
+  {% for p in person %}
+  <li>
+    <div class="article-panel">
+      <p class="first">Имя: {{p.first_name}}</p>
+      <p class="first">Фамилия: {{p.last_name}}</p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
