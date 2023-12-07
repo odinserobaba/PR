@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Person
+from .models import Person, City, Address
 # Register your models here.
 
 
@@ -13,3 +13,11 @@ class PersonAdmin(admin.ModelAdmin):
     list_per_page = 5
     search_fields = ['first_name', 'last_name', 'patronymic', 'phone_number1', 'phone_number2',
                      'email', 'birth_date']
+
+
+@admin.register(City)
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    ordering = ['name']
+    list_per_page = 5
+    search_fields = ['name']
